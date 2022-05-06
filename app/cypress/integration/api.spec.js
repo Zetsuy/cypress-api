@@ -1,7 +1,17 @@
 /// <reference types="cypress" />
 
-//GET
 context('API Testing', () => {
+
+    //json server reset
+    beforeEach(() => {
+        cy.fixture('cars').then((cars) => {
+            cy.request('POST', '/reset', cars);
+           })           
+    })
+
+
+    //GET
+
     it('should test cars properties - GET /cars', () => {
         // Alias
         cy.request('GET', '/cars').as('cars');
@@ -15,10 +25,10 @@ context('API Testing', () => {
             });
         });
     });
-});
 
-//POST
-context('API Testing', () => {
+
+    //POST
+
     it('should add a car - POST /cars', () => {
         cy.fixture('car').then((car) => {
             cy.request('POST', '/cars', car);
