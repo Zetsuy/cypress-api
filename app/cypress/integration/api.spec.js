@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+
+//GET
 context('API Testing', () => {
     it('should test cars properties - GET /cars', () => {
         // Alias
@@ -13,4 +15,13 @@ context('API Testing', () => {
             });
         });
     });
-}); 
+});
+
+//POST
+context('API Testing', () => {
+    it('should add a car - POST /cars', () => {
+        cy.fixture('car').then((car) => {
+            cy.request('POST', '/cars', car);
+        })
+    });
+});
